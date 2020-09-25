@@ -88,6 +88,15 @@ a {
   background-color: transparent;
 }
 
+.btn-eliminar{
+  display: flex; 
+  justify-content: flex-end;
+  
+}
+.btn-delete {
+  background-color: crimson;
+}
+
 @media (min-width: 768px) {
   .contenedor-app {
       display: flex;
@@ -104,10 +113,14 @@ a {
 
 }
 
+.logo video{
+  width: 100%;
+}
 
 /* BARRA LATERAL */
 aside  {
   padding: 3rem;
+  background-color: #191819;
 }
 
 .formulario-nuevo-proyecto {
