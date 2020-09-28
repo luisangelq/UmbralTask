@@ -5,12 +5,12 @@ import Logo from "../../styles/media/logo.mp4";
 
 const SideBar = () => {
   return (
-    <aside>
-      <div className="logo">
-        <video autoPlay muted>
+    <aside className="sombra">
+      
+        <video autoPlay loop muted>
           <source src={Logo} type="video/mp4" />
         </video>
-      </div>
+    
 
       <NewProject />
 
