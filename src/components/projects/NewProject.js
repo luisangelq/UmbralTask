@@ -2,9 +2,9 @@ import React, { Fragment, useContext, useState } from "react";
 import projectContext from "../../context/projects/projectContext";
 
 const NewProject = () => {
-  //get state
+  //get state from form
   const projectsContext = useContext(projectContext);
-  const { form, showForm } = projectsContext;
+  const { form, errorform, showForm, addProject, showError} = projectsContext;
 
   //state for project
   const [project, saveProject] = useState({
@@ -19,13 +19,30 @@ const NewProject = () => {
     });
   };
 
+  //extract project name
+  const { name } = project;
   //When the user send a project
   const onSubmitProject = (e) => {
     e.preventDefault();
+
+    //validate project
+    if(name === "") {
+      showError();
+      console.log("nada");
+      return;
+    }
+
+    //Add State
+    addProject(project);
+
+    //restart form
+    saveProject({
+      name: ""
+    })
+
   };
 
-  //extract project name
-  const { name } = project;
+  
 
   return (
     <Fragment>
@@ -49,6 +66,8 @@ const NewProject = () => {
           </button>
         </form>
       ) : null}
+
+      { errorform ? <p className="mensaje error">the name of the project is forced</p> : null}
     </Fragment>
   );
 };

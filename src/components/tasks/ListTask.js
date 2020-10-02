@@ -1,7 +1,15 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useContext } from "react";
 import Task from "./Task";
+import projectContext from "../../context/projects/projectContext";
 
 function ListTask() {
+  //get projects from initialState 
+  const projectsContext = useContext(projectContext);
+  const { project } = projectsContext;
+
+  //Extract current project
+   
+
   const projectTasks = [
     { name: "Choose platform", state: true },
     { name: "Choose color", state: false },
