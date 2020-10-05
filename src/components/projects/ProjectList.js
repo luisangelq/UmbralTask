@@ -13,7 +13,7 @@ const ProjectList = () => {
     }, []);
 
     //Check if projects have content
-    if(projects.length === 0) return null;
+    if(projects.length === 0) return <p style={{color: "white"}}>There aren't any project, let's start creating one</p>;
 
     
 

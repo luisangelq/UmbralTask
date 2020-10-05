@@ -1,37 +1,46 @@
 import React, { Fragment, useContext } from "react";
 import Task from "./Task";
 import projectContext from "../../context/projects/projectContext";
+import taskContext from "../../context/tasks/taskContext";
 
 function ListTask() {
   //get projects from initialState 
   const projectsContext = useContext(projectContext);
-  const { project } = projectsContext;
+  const { project, deleteProject } = projectsContext;
+
+  //get tasks
+  const tasksContext = useContext(taskContext);
+  const { tasksproject } = tasksContext;
+
+  //if no project is selected
+  if(!project) return null;
 
   //Extract current project
-   
+  const [currentProject] = project;
 
-  const projectTasks = [
-    { name: "Choose platform", state: true },
-    { name: "Choose color", state: false },
-    { name: "Choose payment platform", state: true },
-    { name: "Choose hosting", state: false },
-  ];
-
+  //Delete a project 
+  const onClickDelete = () => {
+    deleteProject(currentProject.id)
+  }
   return (
     <Fragment>
-      <h2>Proyect: </h2>
+      <h2>Proyect: {currentProject.name}</h2>
 
       <ul className="listado-tareas">
-        {projectTasks.length === 0 ? (
+        {tasksproject.length === 0 ? (
           <li className="task">
             <p>There aren't tasks</p>
           </li>
         ) : (
-          projectTasks.map((task) => <Task task={task} />)
+          tasksproject.map((task) => <Task task={task} />)
         )}
       </ul>
       <div className="btn-eliminar">
-        <button type="button" className="btn btn-eliminar btn-delete">
+        <button 
+          type="button" 
+          className="btn btn-eliminar btn-delete"
+          onClick={onClickDelete}
+          >
           Delete Proyect &times;
         </button>
       </div>

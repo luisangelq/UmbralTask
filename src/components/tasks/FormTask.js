@@ -1,6 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
+import projectContext from "../../context/projects/projectContext";
 
 const FormTask = () => {
+  //get projects if active
+  const projectsContext = useContext(projectContext);
+  const { project } = projectsContext;
+
+  //if no project is selected
+  if(!project) return <h1 className="formulario" style={{color: "white"}}>Select a project..</h1>;
+
+  //Extract current project
+  const [currentProject] = project;
+
   return (
     <div className="formulario">
       <form>

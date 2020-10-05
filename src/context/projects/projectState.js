@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 import projectContext from "./projectContext";
 import projectReducer from "./projectReducer";
-import { FORM_PROJECT, GET_PROJECTS, ADD_PROJECT, VALIDATE_FORM, CURRENT_PROJECT } from "../../types";
+import { FORM_PROJECT, GET_PROJECTS, ADD_PROJECT, VALIDATE_FORM, CURRENT_PROJECT, DELETE_PROJECT } from "../../types";
 
 const ProjectState = (props) => {
   const projects = [
@@ -63,6 +63,14 @@ const ProjectState = (props) => {
       })
   }
 
+  //Delete a project
+  const deleteProject = (projectId) => {
+    dispatch({
+      type: DELETE_PROJECT,
+      payload: projectId
+    })
+  }
+
   return (
     <projectContext.Provider
       value={{
@@ -75,6 +83,7 @@ const ProjectState = (props) => {
         addProject,
         showError,
         currentProject,
+        deleteProject,
       }}
     >
       {props.children}
