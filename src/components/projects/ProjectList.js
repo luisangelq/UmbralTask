@@ -1,33 +1,37 @@
-import React, { useContext, useEffect } from 'react'
-import Project from "./Project"
+import React, { useContext, useEffect } from "react";
+import Project from "./Project";
 import projectContext from "../../context/projects/projectContext";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 const ProjectList = () => {
-    //get projects from initialState 
-    const projectsContext = useContext(projectContext); 
-    const { projects, getProjects } = projectsContext;
+  //get projects from initialState
+  const projectsContext = useContext(projectContext);
+  const { projects, getProjects } = projectsContext;
 
-    useEffect(() => {
-        getProjects();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+  useEffect(() => {
+    getProjects();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-    //Check if projects have content
-    if(projects.length === 0) return <p style={{color: "white"}}>There aren't any project, let's start creating one</p>;
-
-    
-
+  //Check if projects have content
+  if (projects.length === 0)
     return (
-        
-        <ul className="listado-proyectos">
-            {projects.map(project => (
-                <Project 
-                    key={project.id}
-                    project={project}
-                />
-            ))}
-        </ul>
-    )
-}
+      <p style={{ color: "white" }}>
+        There aren't any project, let's start creating one
+      </p>
+    );
 
-export default ProjectList
+  return (
+    <ul className="listado-proyectos">
+      <TransitionGroup >
+        {projects.map((project) => (
+          <CSSTransition key={project.id} timeout={200} classNames="proyecto">
+            <Project project={project} />
+          </CSSTransition>
+        ))}
+      </TransitionGroup>
+    </ul>
+  );
+};
+
+export default ProjectList;
