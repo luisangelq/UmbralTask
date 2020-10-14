@@ -4,6 +4,9 @@ import projectContext from "../../context/projects/projectContext";
 import taskContext from "../../context/tasks/taskContext";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrash } from '@fortawesome/free-solid-svg-icons'
+
 function ListTask() {
   //get projects from initialState
   const projectsContext = useContext(projectContext);
@@ -42,13 +45,13 @@ function ListTask() {
           </TransitionGroup>
         )}
       </ul>
-      <div className="btn-eliminar">
+      <div className="delete-div">
         <button
           type="button"
-          className="btn btn-eliminar btn-delete"
+          className="btn btn-delete"
           onClick={onClickDelete}
         >
-          Delete Proyect &times;
+          Delete Proyect <FontAwesomeIcon icon={faTrash} style={{marginLeft: "5px"}}/>
         </button>
       </div>
     </Fragment>

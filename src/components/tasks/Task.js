@@ -3,6 +3,10 @@ import React, { useContext } from "react";
 import projectContext from "../../context/projects/projectContext";
 import taskContext from "../../context/tasks/taskContext";
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEdit } from '@fortawesome/free-solid-svg-icons'
+import { faTrash } from '@fortawesome/free-solid-svg-icons'
+
 const Task = ({ task }) => {
   //get projects if active
   const projectsContext = useContext(projectContext);
@@ -50,21 +54,22 @@ const Task = ({ task }) => {
             className="incompleto"
             onClick={() => changeState(task)}
           >
-            Incompleto
+            Incomplete
           </button>
         )}
       </div>
 
       <div className="acciones">
-        <button type="button" className="btn btn-primario" onClick={() => selectTask(task)}>
-          Edit
+        <button type="button" className="btn btn-primario" style={{display:"flex", justifyContent:"space-between"}} onClick={() => selectTask(task)}>
+          Edit <FontAwesomeIcon icon={faEdit}/>
         </button>
         <button
           type="button"
           className="btn btn-secundario"
+          style={{display:"flex", justifyContent:"space-between"}}
           onClick={() => deleteTaskBtn(task.id)}
         >
-          Delete
+          Delete <FontAwesomeIcon icon={faTrash}/>
         </button>
       </div>
     </li>

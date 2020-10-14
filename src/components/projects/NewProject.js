@@ -55,7 +55,7 @@ const NewProject = () => {
           <input
             type="text"
             className="input-text"
-            placeholder="Project Name"
+            placeholder="Project Name.."
             name="name"
             value={name}
             onChange={onChangeProject}

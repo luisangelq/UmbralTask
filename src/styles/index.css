@@ -4,8 +4,8 @@
   --gris2: #2f3848;
   --gris3: #1a202d;
   --negro: #000000;
-  --headingFont:'Raleway', sans-serif;
-  --textFont:  'Roboto', sans-serif;
+  --blue: #0F5D5D;
+
 }
 *, *:before, *:after {
   box-sizing: inherit;
@@ -17,10 +17,10 @@ html {
 }
 body {
   min-height: 100%;
-  background-color: var(--gris1);
-  font-size: 16px; 
+  min-width: 100%;
+  background-color: #151E29;
   font-size: 1.6rem;
-  font-family: var(--textFont);
+  font-family: 'Barlow Condensed', sans-serif;
 }
 
 
@@ -29,7 +29,7 @@ h1, h2 {
   font-weight: 900;
   margin: 0 0 4rem 0;
   text-align: center;
-  color: var(--gris2);
+  color: #0F5D5D
 }
 h1 span {
   font-weight: 400;
@@ -53,7 +53,7 @@ a {
 /** BOTONES **/
 .btn {
   margin-top: 2rem;
-  font-family: var(--headingFont);
+  width: 100%;
   padding: 1.5rem;
   font-size: 1.4;
   font-weight: 400;
@@ -66,13 +66,18 @@ a {
 }
 .btn-primario {
   background-color:#09AEB0;
-  color: var(--blanco);
+  color: white;
+  transition: background-color .5s ease;
 }
 .btn-primario:hover {
-  background: var(--gris3);
+  background: #0F5D5D;
 }
 .btn-secundario {
-  background-color: var(--gris1);
+  background-color: #C83737;
+  transition: background-color .5s ease;
+}
+.btn-secundario:hover {
+  background-color: #972020;
 }
 .btn-block {
   display: block;
@@ -84,18 +89,23 @@ a {
 .btn-blank {
   margin: 0;
   padding: 0;
+  height: 20px;
   display: block;
   background-color: transparent;
   color: white;
 }
 
-.btn-eliminar{
+.delete-div{
   display: flex; 
   justify-content: flex-end;
   
 }
 .btn-delete {
-  background-color: crimson;
+  width: 12%;
+  background-color: #C83737;
+}
+.btn-delete icon {
+  font-size: 50px;
 }
 
 @media (min-width: 768px) {
@@ -112,11 +122,10 @@ a {
   .seccion-principal {
     background-color: #F2F1E8;
       flex: 1;
+      
   }
 
 }
-
-
 
 /* BARRA LATERAL */
 aside  {
@@ -126,19 +135,20 @@ aside  {
 
 video{
   width: 100%;
-  height: 20%;
+  height: 15%;
 }
 
 .formulario-nuevo-proyecto {
   margin-top: 6rem;
+  margin-bottom: -6rem;
 }
 .formulario-nuevo-proyecto .input-text {
-  border-bottom: 1px solid var(--gris2);
-  border-radius: 0;
-  background-color: var(--gris1);
+  
+  border-radius: 5;
+  background-color: white;
 }
 .formulario-nuevo-proyecto .input-text::placeholder{
-  color: var(--gris2);
+  color: #0f5d5d75;
 }
 .proyectos {
   margin-top: 10rem;
@@ -180,12 +190,10 @@ video{
   padding: 4rem;
 }
 .formulario form {
-  max-width: 600px;
+  width: 50rem;
   margin: 0 auto;
 }
-.contenedor-input {
-  display: flex;
-}
+
 .contenedor-input label {
   margin-bottom: 1rem;
   color: var(--blanco);
@@ -194,7 +202,6 @@ video{
   padding: 1rem;
   border: none;
   border-radius: .5rem;
-  flex: 1;
   width: 100%;
 }
 
@@ -230,30 +237,27 @@ video{
   -moz-box-shadow: 0px 6px 11px -8px rgba(0,0,0,0.9);
   box-shadow: 0px 6px 11px -8px rgba(0,0,0,0.9);
 }
-.tarea .acciones .btn:first-of-type {
-  margin-right: 1rem;
-}
+
 .tarea p {
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   flex: 1;
   padding-right: 2rem;
 }
 .tarea .btn {
-  padding: .8rem;
+  padding: .5rem;
   font-size:1.4rem;
-  border-radius: 0;
-  margin: 0;
+  border-radius: 5px;
+  margin: 7px;
+  height: 28px;
+  margin-left: 10px;
 }
 
-.estado {
-  margin-right: 1rem;
-}
 .estado button, 
 .mensaje {
-  font-weight: 900;
-  font-family: var(--textFont);
-  font-size: 1rem;
+  font-weight: 500;
+  font-size: 1.1rem;
   padding: .5rem;
+  width: 100%;
   border-radius: .5rem;
   cursor: pointer;
   border: none;
@@ -261,19 +265,19 @@ video{
 .mensaje {
   text-align: center;
   font-size: 1.6rem;
-  border-radius: 0;
+  margin-right: 20rem;
 }
 .mensaje:hover {
   cursor: default;
 }
 .completo,
 .correcto {
-  background-color: rgba(154, 252, 154, .3);
-  color: var(--gris3);
+  background-color: #95eeb0;
+  color: black;
 }
 .incompleto{
-  background-color: rgba(255, 178, 178, .4);
-  color: var(--gris3);
+  background-color: #fc7474;
+  color: black;
 }
 .error {
   max-width: 600px;
@@ -304,9 +308,8 @@ video{
 }
 
 .form-usuario {
-    background-color: var(--gris2);
-    height: 100vh;
-    min-height: 800px;
+    background-color: #0F5D5D;
+    height: 550px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -375,4 +378,26 @@ video{
 .alerta-error {
   background-color: rgb(230, 78, 78);
   color: var(--blanco);
+}
+
+.login-page {
+  height: 100vh;
+}
+
+.header-login{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #151E29;
+  padding: 1rem 5rem 1rem 5rem;
+}
+.footer-login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  background-color: #151E29;
+}
+.rights {
+  color: white;
 }

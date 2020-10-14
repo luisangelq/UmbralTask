@@ -3,6 +3,7 @@ import HeaderBar from '../layout/HeaderBar'
 import SideBar from '../layout/SideBar'
 import FormTask from '../tasks/FormTask'
 import ListTask from '../tasks/ListTask'
+import FooterLogin from "../layout/Footer";
 
 const Projects = () => {
     return (
@@ -17,8 +18,11 @@ const Projects = () => {
                     <div className="contenedor-tareas">
                         <ListTask/>
                     </div>
+                    
                 </main>
+                
             </div>
+            
         </div>
     )
 }
