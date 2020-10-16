@@ -1,30 +1,31 @@
-import React from 'react'
-import HeaderBar from '../layout/HeaderBar'
-import SideBar from '../layout/SideBar'
-import FormTask from '../tasks/FormTask'
-import ListTask from '../tasks/ListTask'
-import FooterLogin from "../layout/Footer";
+import React from "react";
+import HeaderBar from "../layout/HeaderBar";
+import SideBar from "../layout/SideBar";
+import FormTask from "../tasks/FormTask";
+import ListTask from "../tasks/ListTask";
+
 
 const Projects = () => {
-    return (
-        <div className="contenedor-app">
-            <SideBar/>
-
-            <div className="seccion-principal">
-                <HeaderBar/>
-
-                <main>
-                    <FormTask />
-                    <div className="contenedor-tareas">
-                        <ListTask/>
-                    </div>
-                    
-                </main>
-                
-            </div>
-            
+  return (
+    
+      <div className="seccion-principal">
+        
+        <div className="header-bar">
+          <HeaderBar />
         </div>
-    )
-}
 
-export default Projects
+        <div className="side-bar">
+          <SideBar />
+        </div>
+        
+        <main>
+          <FormTask />
+          <div className="contenedor-tareas">
+            <ListTask />
+          </div>
+        </main>
+      </div>
+  );
+};
+
+export default Projects;

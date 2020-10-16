@@ -7,10 +7,7 @@ import { FORM_PROJECT, GET_PROJECTS, ADD_PROJECT, VALIDATE_FORM, CURRENT_PROJECT
 
 const ProjectState = (props) => {
   const projects = [
-    { id: 1, name: "Virtual Shop" },
-    { id: 2, name: "Intranet" },
-    { id: 3, name: "WebSite Design" },
-    { id: 4, name: "Mern" },
+    { id: 1, name: "Example" },
   ];
 
   const initialState = {

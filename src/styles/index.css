@@ -12,13 +12,11 @@
 } 
 html {
   box-sizing: border-box;
-  height: 100%;
   font-size: 62.5%; 
+  background-color: #F2F1E8;
 }
 body {
-  min-height: 100%;
-  min-width: 100%;
-  background-color: #151E29;
+  background-color: #F2F1E8;
   font-size: 1.6rem;
   font-family: 'Barlow Condensed', sans-serif;
 }
@@ -89,7 +87,7 @@ a {
 .btn-blank {
   margin: 0;
   padding: 0;
-  height: 20px;
+  height: 30px;
   display: block;
   background-color: transparent;
   color: white;
@@ -101,41 +99,46 @@ a {
   
 }
 .btn-delete {
-  width: 12%;
+  width: 150px;
   background-color: #C83737;
 }
 .btn-delete icon {
   font-size: 50px;
 }
 
-@media (min-width: 768px) {
-  .contenedor-app {
-      display: flex;
-      min-height: 100vh;
-  }
 
-  aside {
-      background-color: var(--blanco);
-      flex: 0 0 250px;
-  }
-  
-  .seccion-principal {
-    background-color: #F2F1E8;
-      flex: 1;
-      
-  }
-
+.seccion-principal main{
+background-color: #F2F1E8;
 }
+
 
 /* BARRA LATERAL */
-aside  {
+.side-bar  {
+  overflow-y: scroll;
+  scroll-behavior: smooth;
   padding: 1rem 3rem 3rem 3rem;
   background-color: #151E29;
+  height: 86vh;
+  width: 250px;
+  float: left;
+}
+.side-bar::-webkit-scrollbar {
+  width: 5px;
+}
+.side-bar::-webkit-scrollbar-thumb {
+  background: #09AEB0;
+  border-radius: 5px;
 }
 
+@media (max-width:768px) {
+  .side-bar  {
+    min-width: 100%;
+    height: 500px;
+  }
+}
 video{
   width: 100%;
-  height: 15%;
+  height: 100px;
 }
 
 .formulario-nuevo-proyecto {
@@ -151,13 +154,17 @@ video{
   color: #0f5d5d75;
 }
 .proyectos {
+  
   margin-top: 10rem;
 }
+
 .listado-proyectos li {
+  
   margin-bottom: 2rem;
+  font-size: 2rem;
 }
 .listado-proyectos li a {
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   color: var(--gris2);
   line-height: 1.5;
   font-weight: 300;
@@ -186,11 +193,13 @@ video{
 
 /** Formulario crear y editar tareas **/
 .formulario {
+  display: flow-root;
+  height: 180;
   background-color:#6C87A1;
-  padding: 4rem;
+  padding: 2rem;
 }
 .formulario form {
-  width: 50rem;
+  max-width: 50%;
   margin: 0 auto;
 }
 
@@ -207,14 +216,25 @@ video{
 
 /** TAREAS LISTADO **/
 .contenedor-tareas {
+  display: flow-root;
   padding: 4rem;
 }
 
-
-
 .listado-tareas {
-  max-width: 600px;
+  display: flow-root;
+  padding: 30px;
+  height: 270px;
+  max-width: 800px;
+  overflow-y: scroll;
   margin: 0 auto;
+}
+
+.listado-tareas::-webkit-scrollbar {
+  width: 5px;
+}
+.listado-tareas::-webkit-scrollbar-thumb {
+  background-color: #09AEB0;
+  border-radius: 10px;
 }
 
 .tarea {
@@ -281,7 +301,7 @@ video{
 }
 .error {
   max-width: 600px;
-  margin: 2rem auto 0 auto;
+  margin: 8rem auto 0 auto;
   background-color: rgb(170, 0, 0);
   color: var(--blanco);
 }
@@ -309,7 +329,7 @@ video{
 
 .form-usuario {
     background-color: #0F5D5D;
-    height: 550px;
+    min-height: 76.2vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -350,25 +370,12 @@ video{
 }
 
 .alerta {
-  position: fixed;
-  top: 0;
-  left: 0;
-  padding: 1rem 3rem;
+  padding: 1rem;
   border-radius: 1rem;
-  font-family: var(--headingFont);
-  font-weight: 600;
+  font-weight: 500;
   text-transform: uppercase;
-  font-size: 2.2rem;
+  font-size: 1.8rem;
   text-align: center;
-  width: 100%;
-}
-@media (min-width:768px) {
-  .alerta {
-      width: auto;
-      top: 30px;
-      right: 10px;
-      left: auto;
-  }
 }
 
 .alerta-ok {
@@ -376,8 +383,8 @@ video{
   color: rgb(2, 103, 2);
 }
 .alerta-error {
-  background-color: rgb(230, 78, 78);
-  color: var(--blanco);
+  background-color: #C83737;
+  color: white;
 }
 
 .login-page {

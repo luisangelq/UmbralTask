@@ -5,8 +5,7 @@ import Logo from "../../styles/media/logo.mp4";
 
 const SideBar = () => {
   return (
-    <aside className="sombra">
-      
+    <aside>
         <video autoPlay loop muted>
           <source src={Logo} type="video/mp4" />
         </video>
