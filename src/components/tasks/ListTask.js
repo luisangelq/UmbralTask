@@ -24,7 +24,7 @@ function ListTask() {
 
   //Delete a project
   const onClickDelete = () => {
-    deleteProject(currentProject.id);
+    deleteProject(currentProject._id);
   };
   return (
     <Fragment>
@@ -38,7 +38,7 @@ function ListTask() {
         ) : (
           <TransitionGroup>
             {tasksproject.map((task) => (
-              <CSSTransition key={task.id} timeout={200} classNames="tarea">
+              <CSSTransition key={task._id} timeout={200} classNames="tarea">
                 <Task task={task} />
               </CSSTransition>
             ))}

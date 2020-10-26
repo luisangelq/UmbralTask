@@ -2,26 +2,12 @@ import React, { useReducer } from "react";
 
 import taskContext from "./taskContext";
 import TaskReducer from "./taskReducer";
-import { v4 as uuidv4 } from 'uuid';
-import { ADD_TASK, TASKS_PROJECT, VALIDATE_TASK, DELETE_TASK, STATE_TASK, CURRENT_TASK, UPDATE_TASK, CLEAN_TASK } from "../../types";
+import { ADD_TASK, TASKS_PROJECT, VALIDATE_TASK, DELETE_TASK, CURRENT_TASK, UPDATE_TASK, CLEAN_TASK } from "../../types";
+import clientAxios from "../../config/axios";
 
 const TaskState = (props) => {
   const initialState = {
-    tasks: [
-      { id: 1, name: "Choose platform", state: true, projectId: 1 },
-      { id: 2, name: "Choose color", state: false, projectId: 4 },
-      { id: 3, name: "Choose payment platform", state: true, projectId: 3 },
-      { id: 4, name: "Choose platform", state: true, projectId: 2 },
-      { id: 5, name: "Choose color", state: false, projectId: 2 },
-      { id: 6, name: "Choose payment platform", state: true, projectId: 1 },
-      { id: 7, name: "Choose platform", state: true, projectId: 3 },
-      { id: 8, name: "Choose color", state: false, projectId: 1 },
-      { id: 9, name: "Choose payment platform", state: true, projectId: 3 },
-      { id: 10, name: "Choose platform", state: true, projectId: 2 },
-      { id: 11, name: "Choose color", state: false, projectId: 1 },
-      { id: 12, name: "Choose payment platform", state: true, projectId: 3 },
-    ],
-    tasksproject: null,
+    tasksproject: [],
     errortask: false,
     selectedtask: null
   };
@@ -32,20 +18,34 @@ const TaskState = (props) => {
   //functions
 
   //get tasks from a specific project
-  const getTasks = (projectId) => {
-    dispatch({
-      type: TASKS_PROJECT,
-      payload: projectId,
-    });
+  const getTasks = async (belongsProject) => {
+    console.log(belongsProject);
+    try {
+      const response = await clientAxios.get('/api/tasks', {params: {belongsProject}})
+      console.log(response);
+      dispatch({
+        type: TASKS_PROJECT,
+        payload: response.data.tasks,
+      })
+    } catch (error) {
+      console.log(error);
+    }
+    return;
   };
 
   //add task to project selected
-  const addTask = (task) => {
-    task.id = uuidv4();
-    dispatch({
-      type: ADD_TASK,
-      payload: task,
-    });
+  const addTask = async (task) => {
+    try {
+      const response = await clientAxios.post('/api/tasks', task);
+        console.log(response);
+      dispatch({
+        type: ADD_TASK,
+        payload: task,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+    
   };
 
   //validate and show an error if neccesary
@@ -56,19 +56,30 @@ const TaskState = (props) => {
   }
 
   //Delete task by id
-  const deleteTask = (taskId) => {
-    dispatch({
-      type: DELETE_TASK,
-      payload: taskId
-    })
+  const deleteTask = async (taskId, belongsProject) => {
+    try {
+      await clientAxios.delete(`/api/tasks/${taskId}`, { params: {belongsProject}})
+      dispatch({
+        type: DELETE_TASK,
+        payload: taskId
+      })
+    } catch (error) {
+      console.log(error);
+    }
   } 
 
-  //Change state of each task
-  const changeTaskState = (task) => {
-    dispatch({
-      type: STATE_TASK,
-      payload: task
-    })
+  //Edit task
+  const updateTask = async (task) => {
+    try {
+      const response = await clientAxios.put(`/api/tasks/${task._id}`, task);
+      console.log(response);
+      dispatch({
+        type: UPDATE_TASK,
+        payload: response.data.task
+      })
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   //Extract data task for edition
@@ -79,13 +90,7 @@ const TaskState = (props) => {
     })
   }
 
-  //Edit task
-  const updateTask = (task) => {
-    dispatch({
-      type: UPDATE_TASK,
-      payload: task
-    })
-  }
+  
 
   //Delete Task selected
   const cleanTask = () => {
@@ -105,7 +110,6 @@ const TaskState = (props) => {
         addTask,
         validateTask,
         deleteTask,
-        changeTaskState,
         saveCurrentTask,
         updateTask,
         cleanTask

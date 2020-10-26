@@ -14,20 +14,20 @@ const Task = ({ task }) => {
 
   //get function from taskContext
   const tasksContext = useContext(taskContext);
-  const { deleteTask, getTasks, changeTaskState, saveCurrentTask } = tasksContext;
+  const { deleteTask, getTasks,updateTask, saveCurrentTask } = tasksContext;
 
   //When user hit deleteTask btn
   const [currentProject] = project;
 
   const deleteTaskBtn = (taskId) => {
-    deleteTask(taskId);
+    deleteTask(taskId, currentProject._id);
     getTasks(currentProject.id);
   };
 
   //modify the task state
   const changeState = (task) => {
     task.state = !task.state;
-    changeTaskState(task);
+    updateTask(task);
   };
 
   //Edit task
@@ -67,7 +67,7 @@ const Task = ({ task }) => {
           type="button"
           className="btn btn-secundario"
           style={{display:"flex", justifyContent:"space-between"}}
-          onClick={() => deleteTaskBtn(task.id)}
+          onClick={() => deleteTaskBtn(task._id)}
         >
           Delete <FontAwesomeIcon icon={faTrash}/>
         </button>

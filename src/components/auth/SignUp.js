@@ -20,8 +20,9 @@ const SignUp = (props) => {
     }
 
     if(message) {
-      showAlert("User Already Exist", "alerta-error");
+      showAlert(message.msg, message.category);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [message, authUser, props.history])
 
   //State for log in

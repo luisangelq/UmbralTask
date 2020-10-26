@@ -1,6 +1,11 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import Logo from "../../styles/media/logo.mp4";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSignInAlt } from '@fortawesome/free-solid-svg-icons'
+import { faUserPlus } from '@fortawesome/free-solid-svg-icons'
+import { faPhoneAlt } from '@fortawesome/free-solid-svg-icons'
 
 const HeaderBar = () => {
   return (
@@ -10,8 +15,18 @@ const HeaderBar = () => {
       </video>
 
       <nav className="nav-principal">
-        <a href="#!">About</a>
-        <a href="#!">Contact</a>
+      <Link to={"/about"} >
+            About This Project
+      </Link>
+      <Link to={"/contact"} >
+            Contact <FontAwesomeIcon icon={faPhoneAlt}/>
+      </Link>
+      <Link to={"/"} >
+            Sign In <FontAwesomeIcon icon={faSignInAlt}/>
+      </Link>
+      <Link to={"/sign-up"}  >
+            Sign Up <FontAwesomeIcon icon={faUserPlus}/>
+      </Link>
       </nav>
     </header>
   );

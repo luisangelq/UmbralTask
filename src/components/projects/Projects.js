@@ -1,11 +1,21 @@
-import React from "react";
+import React, {useContext, useEffect} from "react";
 import HeaderBar from "../layout/HeaderBar";
 import SideBar from "../layout/SideBar";
 import FormTask from "../tasks/FormTask";
 import ListTask from "../tasks/ListTask";
+import AuthContext from "../../context/auth/authContext"
 
 
 const Projects = () => {
+
+  const authContext = useContext(AuthContext);
+  const { userAuth } = authContext;
+  
+  useEffect(() => {
+    userAuth();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+  
   return (
     
       <div className="seccion-principal">

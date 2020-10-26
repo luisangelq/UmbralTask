@@ -1,20 +1,26 @@
 import React, { useReducer } from "react";
-import { v4 as uuidv4 } from 'uuid';
 
 import projectContext from "./projectContext";
 import projectReducer from "./projectReducer";
-import { FORM_PROJECT, GET_PROJECTS, ADD_PROJECT, VALIDATE_FORM, CURRENT_PROJECT, DELETE_PROJECT } from "../../types";
+import {
+  FORM_PROJECT,
+  GET_PROJECTS,
+  ADD_PROJECT,
+  VALIDATE_FORM,
+  CURRENT_PROJECT,
+  DELETE_PROJECT,
+  ERROR_PROJECT,
+} from "../../types";
+import clientAxios from "../../config/axios";
 
 const ProjectState = (props) => {
-  const projects = [
-    { id: 1, name: "Example" },
-  ];
 
   const initialState = {
     projects: [],
     form: false,
     errorform: false,
-    project: null
+    project: null,
+    message: null
   };
 
   //Dispatch to execute actions
@@ -28,45 +34,88 @@ const ProjectState = (props) => {
   };
 
   //get projects
-  const getProjects = () => {
-    dispatch({
-      type: GET_PROJECTS,
-      payload: projects,
-    });
+  const getProjects = async () => {
+    try {
+      const response = await clientAxios.get("/api/projects");
+
+      dispatch({
+        type: GET_PROJECTS,
+        payload: response.data.projects
+      });
+    } catch (error) {
+      const alert = {
+        msg: "There was an error",
+        category: "alerta-error"
+      }
+      
+      dispatch({
+        type: ERROR_PROJECT,
+        payload: alert
+      })
+    }
+    
   };
 
   //Add new project
-  const addProject = project => {
-      project.id = uuidv4();
+  const addProject = async (project) => {
+    try {
+      const response = await clientAxios.post("/api/projects", project);
+      console.log(response);
       //insert project into state
       dispatch({
-          type: ADD_PROJECT,
-          payload: project
+        type: ADD_PROJECT,
+        payload: response.data,
+      });
+
+    } catch (error) {
+      const alert = {
+        msg: "There was an error",
+        category: "alerta-error"
+      }
+      
+      dispatch({
+        type: ERROR_PROJECT,
+        payload: alert
       })
-  }
+    }
+  };
 
   //Validate Form
   const showError = () => {
-      dispatch({
-          type: VALIDATE_FORM
-      })
-  }
+    dispatch({
+      type: VALIDATE_FORM,
+    });
+  };
 
   //Select project that user clicked
   const currentProject = (projectId) => {
-      dispatch({
-        type: CURRENT_PROJECT,
-        payload: projectId
-      })
-  }
+    dispatch({
+      type: CURRENT_PROJECT,
+      payload: projectId,
+    });
+  };
 
   //Delete a project
-  const deleteProject = (projectId) => {
-    dispatch({
-      type: DELETE_PROJECT,
-      payload: projectId
-    })
-  }
+  const deleteProject = async (projectId) => {
+    try {
+      await clientAxios.delete(`/api/projects/${projectId}`)
+      dispatch({
+        type: DELETE_PROJECT,
+        payload: projectId,
+      });
+    } catch (error) {
+      const alert = {
+        msg: "There was an error",
+        category: "alerta-error"
+      }
+      
+      dispatch({
+        type: ERROR_PROJECT,
+        payload: alert
+      })
+    }
+    
+  };
 
   return (
     <projectContext.Provider
@@ -75,6 +124,7 @@ const ProjectState = (props) => {
         form: state.form,
         errorform: state.errorform,
         project: state.project,
+        message: state.message,
         showForm,
         getProjects,
         addProject,
