@@ -18,10 +18,10 @@ const About = () => {
             methodologies and best practices such as Algorithms, Quality,
             Problem Solving, OOP, APIs and more. <br/> In addition, it worked with
             other tools not seen in the course such as NodeJS, authentication
-            via tokens, and with the most recent react documentation. <br/> Steps to
+            via tokens, and with the most recent React documentation. <br/> <br/> Steps to
             use the application: <br/> 1- You must create an account. <br/> 2- In your panel
             you can create projects and assign them tasks. <br/> 3- You can log out
-            and log in again with your credentials.
+            and log in again with your credentials. <br/> <br/> <h2>Repositories</h2> <a className="github" href="https://github.com/luisangelq/UmbralTask" target="_blank">GitHub Client</a> <br/> <br/> <a className="github" href="https://github.com/luisangelq/UmbralTaskServer" target="_blank">GitHub Server</a>
           </span>
         </div>
       </div>

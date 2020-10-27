@@ -437,3 +437,6 @@ video{
 .rights {
   color: white;
 }
+.github:hover {
+  color: #09AEB0;
+}
