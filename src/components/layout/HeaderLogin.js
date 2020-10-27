@@ -15,17 +15,18 @@ const HeaderBar = () => {
       </video>
 
       <nav className="nav-principal">
-      <Link to={"/about"} >
-            About This Project
-      </Link>
-      <Link to={"/contact"} >
-            Contact <FontAwesomeIcon icon={faPhoneAlt}/>
-      </Link>
-      <Link to={"/"} >
+          <Link to={"/"} >
             Sign In <FontAwesomeIcon icon={faSignInAlt}/>
       </Link>
       <Link to={"/sign-up"}  >
             Sign Up <FontAwesomeIcon icon={faUserPlus}/>
+      </Link>
+      
+      <Link to={"/contact"} >
+            Contact <FontAwesomeIcon icon={faPhoneAlt}/>
+      </Link>
+      <Link to={"/about"} >
+            About This Project
       </Link>
       </nav>
     </header>
