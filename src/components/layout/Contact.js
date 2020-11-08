@@ -16,7 +16,7 @@ const About = () => {
               <li>Tel.  +52 33 2626 4356</li> <br/>
               <li><a href="https://www.linkedin.com/in/luis-angel-quiñones-guerrero-a40075198">LinkenIn 🔗</a></li> <br/>
               Email:
-              <li>luisangelneko31@gmail.com</li>
+              <li>luisangelq3673@gmail.com</li>
             </ul>
           </div>
         </div>
