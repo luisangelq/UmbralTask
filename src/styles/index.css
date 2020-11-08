@@ -99,7 +99,7 @@ a {
   
 }
 .btn-delete {
-  width: 150px;
+  width: 18rem;
   background-color: #C83737;
 }
 .btn-delete icon {
@@ -252,7 +252,7 @@ video{
 .listado-tareas {
   display: flow-root;
   padding: 30px;
-  height: 270px;
+  height: 43rem;
   max-width: 800px;
   overflow-y: scroll;
   margin: 0 auto;
